@@ -13,6 +13,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://book-store-frontend-green.vercel.app",
+      "https://book-store-backend-ten-chi.vercel.app",
     ],
     credentials: true,
   })
