@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const helmet = require("helmet"); // Recommended for security headers
 const mongoose = require("mongoose");
 const port = process.env.PORT || 5000;
 require("dotenv").config();
@@ -19,32 +18,6 @@ app.use(
   })
 );
 
-// Add Helmet for Security Headers
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      useDefaults: true,
-      directives: {
-        "default-src": ["'self'"],
-        "script-src": [
-          "'self'",
-          "https://vercel.live", // Allow scripts from Vercel live
-        ],
-        "style-src": ["'self'", "'unsafe-inline'","https://vercel.com"], // Allow inline styles if needed
-        "img-src": ["'self'", "data:","https://vercel.com","https://*.pusher.com"], // Allow images from same origin and data URIs
-        "connect-src": [
-          "'self'",
-          "https://book-store-frontend-green.vercel.app",
-          "https://vercel.live",
-          "https://*.pusher.com",
-          "https://*.pusherapp.com"
-        ],
-        "frame-src": ["https://vercel.live"],
-        "font-src": ["https://vercel.live"],
-      },
-    },
-  })
-);
 
 // Routes
 const bookRoutes = require("./src/books/book.route");
